@@ -122,13 +122,29 @@ class FileScaffoldConfig {
   }
 
   static void printHelp() {
-
+    print('File Scaffolding from a directory structure of any templates with replaceable-tokens');
+    print('for generating files from simple parameters.\n');
+    print('Usage:');
+    print('  When installed globally:\n');
+    print('      pub global run file_scaffold -n name [...flags]');
+    print('\nOptions:\n');
+    print(argParser.usage);
   }
 
   static ArgParser _createArgsParser() {
-    var argParser = ArgParser();
-    argParser.addOption('name', abbr: 'n');
-    argParser.addOption('output-dir', abbr: 'o');
+    var argParser = ArgParser(usageLineLength: 100);
+    argParser.addOption(
+      'name',
+      abbr: 'n',
+      help:
+          'Name of this scaffold, to be used in folder name (if --create-subfolder is used) and file templates.',
+    );
+    argParser.addOption(
+      'output-dir',
+      abbr: 'o',
+      help:
+          'Directory to output the template files to. They will maintain their original directory structure.',
+    );
     argParser.addFlag(
       'create-subfolder',
       abbr: 'C',
@@ -151,7 +167,7 @@ class FileScaffoldConfig {
     argParser.addFlag(
       'help',
       abbr: 'h',
-      help: 'This usage text.',
+      help: 'Display this help message.',
       negatable: false,
     );
     return argParser;

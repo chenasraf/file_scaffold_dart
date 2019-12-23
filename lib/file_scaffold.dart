@@ -1,3 +1,4 @@
+library file_scaffold;
 import 'dart:io';
 import 'package:glob/glob.dart';
 import 'package:file_scaffold/config.dart';

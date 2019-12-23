@@ -5,7 +5,7 @@ void main(List<String> args) {
   var res = FileScaffoldConfig.argParser.parse(args);
 
   if (res['help']) {
-    print(FileScaffoldConfig.argParser.usage);
+    FileScaffoldConfig.printHelp();
     exit(0);
   }
   try {
@@ -14,6 +14,6 @@ void main(List<String> args) {
   } on ArgumentError {
     print('Problem parsing the input arguments.');
     print(FileScaffoldConfig.argParser.usage);
-    exit(0);
+    exit(1);
   }
 }
