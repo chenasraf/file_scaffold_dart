@@ -62,7 +62,7 @@ class FileScaffoldConfig {
   static String _getAbsolute(String path) =>
       isAbsolute(path) ? path : absolute(path);
 
-  static _mapTemplates(Iterable<dynamic> templates) => [
+  static List<TemplateConfig> _mapTemplates(Iterable<dynamic> templates) => [
         for (dynamic template in templates)
           template is TemplateConfig
               ? TemplateConfig(
@@ -76,7 +76,7 @@ class FileScaffoldConfig {
       ];
 
   /// Makes a copy of this config, with the specified properties overridden.
-  copyWith({
+  FileScaffoldConfig copyWith({
     String name,
     List<String> templates,
     String outputDirectory,
@@ -94,7 +94,7 @@ class FileScaffoldConfig {
   factory FileScaffoldConfig.fromArgs(List<String> args) {
     var parser = FileScaffoldConfig.argParser;
     var results = parser.parse(args);
-    Map<String, dynamic> locals = {};
+    var locals = <String, dynamic>{};
     for (String local in results['locals']) {
       var k = local.substring(0, local.indexOf('='));
       var v = local.substring(local.indexOf('=') + 1);

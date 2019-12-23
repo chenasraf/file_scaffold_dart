@@ -23,7 +23,7 @@ class FileScaffold {
 
   /// Lists all file paths for a given [TemplateConfig].
   Stream<String> inputFiles(TemplateConfig template) async* {
-    Glob glob = Glob(template.pattern);
+    var glob = Glob(template.pattern);
     await for (FileSystemEntity file in glob.list()) {
       if (!Directory(file.path).existsSync()) {
         yield absolute(file.path);
@@ -38,8 +38,8 @@ class FileScaffold {
   /// then outputting the new contents to the [config.outputDirectory].
   Future<void> run() async {
     for (var template in templates) {
-      await for (String file in inputFiles(template)) {
-        await _parseFile(template, file);
+      await for (var file in inputFiles(template)) {
+        unawaited(_parseFile(template, file));
       }
     }
   }
@@ -54,7 +54,7 @@ class FileScaffold {
     );
   }
 
-  _parseFile(TemplateConfig template, String file) async {
+  Future<void> _parseFile(TemplateConfig template, String file) async {
     print('Parsing: $file');
 
     if (!await File(file).exists()) {
