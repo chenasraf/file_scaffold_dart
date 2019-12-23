@@ -1,0 +1,14 @@
+name: file_scaffold
+description: "Takes any directory structure, and creates modified copies of that structure using tokens for replacement."
+homepage: https://github.com/chenasraf/file_scaffold_dart
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.3.0 <3.0.0"
+
+dependencies:
+  path: ^1.6.4
+  meta: ^1.1.8
+  glob: ^1.2.0
+  args: ^1.5.2
+  pedantic: ^1.9.0
